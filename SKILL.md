@@ -8,37 +8,37 @@ description: 每日龙虎榜选股v3.0：评分制(8因子加权)替代硬阈值
 ## 触发条件
 用户提到"龙虎榜选股"、"今日龙虎榜选股"、"今天龙虎榜"、"LHB筛选"等关键词时触发。
 
+## 执行规则
+
+**必须使用 `--html` 参数**，选股完成后强制生成可视化 HTML 报告，并用 `present_files` 展示给用户。
+
+默认执行命令：
+```bash
+python3 scripts/lhb_v3.py --html
+```
+
+指定日期：
+```bash
+python3 scripts/lhb_v3.py --date YYYY-MM-DD --html
+```
+
+## 其他命令
+
+```bash
+# JSON输出
+python3 scripts/lhb_v3.py --json
+# 持仓跟踪
+python3 scripts/lhb_v3.py --track
+# 回测
+python3 scripts/lhb_v3.py --backtest 30
+```
+
 ## 数据源
 - 龙虎榜：东方财富API `RPT_DAILYBILLBOARD_DETAILSNEW`
 - K线主用：东方财富push2his API（个股）
 - K线备用：新浪财经K线API（个股+指数，更稳定）
-- 北向持仓(可选)：`westock-data fund north-holding`
 - 脚本路径：`scripts/lhb_v3.py`
-
-## 执行方式
-
-```bash
-# 每日选股(默认今天) + 控制台输出
-python3 scripts/lhb_v3.py
-
-# 指定日期
-python3 scripts/lhb_v3.py --date 2026-07-09
-
-# JSON结构化输出（供程序消费）
-python3 scripts/lhb_v3.py --date 2026-08-11 --json
-
-# 生成精美HTML报告
-python3 scripts/lhb_v3.py --date 2026-08-11 --html
-
-# 指定HTML输出路径
-python3 scripts/lhb_v3.py --date 2026-08-11 --html output/report.html
-
-# 持仓跟踪
-python3 scripts/lhb_v3.py --track
-
-# 回测
-python3 scripts/lhb_v3.py --backtest 30
-```
+- HTML报告生成：`scripts/report_v3.py`
 
 ## v3.0 核心升级（vs v2.0）
 
